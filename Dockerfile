@@ -14,5 +14,3 @@ COPY Dockerfile /
 COPY setup.sh /opt/sunet/setup.sh
 RUN /opt/sunet/setup.sh
 WORKDIR /opt/atlassian
-
-USER atlassian
