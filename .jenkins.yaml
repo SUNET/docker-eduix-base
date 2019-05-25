@@ -1,3 +1,9 @@
 docker_name: eduix/eduix-base
+docker_tags:
+    - "${GIT_BRANCH}"
 triggers:
     cron: @daily
+git:
+    branches:
+        - master
+        - production
