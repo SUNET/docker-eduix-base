@@ -6,7 +6,7 @@ triggers:
 git:
     branches:
         - master
-        - production
+        - stable
     extensions:
         checkout_local_branch: true
 clean_workspace: true
