@@ -9,11 +9,12 @@ git:
     extensions:
         checkout_local_branch: true
 clean_workspace: true
+
 extra_jobs:
     - name: docker-eduix-base-daily
-    builders:
+      builders:
         - docker
-    docker_name: eduix/eduix-base
-    triggers:
+      docker_name: eduix/eduix-base
+      triggers:
         github_push: false
         cron: @daily
