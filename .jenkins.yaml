@@ -15,6 +15,8 @@ extra_jobs:
       builders:
         - docker
       docker_name: eduix/eduix-base
+      git:
+          branch: master
       triggers:
         github_push: false
         cron: @daily
