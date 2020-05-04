@@ -1,25 +1,20 @@
 docker_name: eduix/eduix-base
-builders:
-  - script
-script:
-  - "echo \"Dummy job for starting branch specific ones\""
+docker_tags:
+    - "${GIT_LOCAL_BRANCH}"
 git:
-  branches:
-    - master
-    - stable
-    - staging
-  extensions:
-    checkout_local_branch: true
+    branches:
+        - master
+        - stable
+        - staging
+    extensions:
+        checkout_local_branch: true
 clean_workspace: true
-downstream:
-  - docker-eduix-base-master
-  - docker-eduix-base-staging
-  - docker-eduix-base-stable
 
 extra_jobs:
     - name: docker-eduix-base-daily
       builders:
         - docker
+      docker_name: eduix/eduix-base
       git:
         branch: master
         extensions:
@@ -27,28 +22,3 @@ extra_jobs:
       triggers:
         github_push: false
         cron: "@daily"
-      downstream: []
-    - name: docker-eduix-base-master
-      builders:
-        - docker
-      docker_tags:
-        - "master"
-      git:
-        branch: master
-      downstream: []
-    - name: docker-eduix-base-staging
-      builders:
-        - docker
-      docker_tags:
-        - "staging"
-      git:
-        branch: staging
-      downstream: []
-    - name: docker-eduix-base-stable
-      builders:
-        - docker
-      docker_tags:
-        - "stable"
-      git:
-        branch: stable
-      downstream: []
