@@ -1,6 +1,7 @@
 docker_name: eduix/eduix-base
 docker_tags:
     - "${GIT_LOCAL_BRANCH}"
+docker_skip_tag_as_latest: true
 git:
     branches:
         - master
@@ -15,6 +16,7 @@ extra_jobs:
       builders:
         - docker
       docker_name: eduix/eduix-base
+      docker_skip_tag_as_latest: false
       git:
         branch: master
         extensions:
