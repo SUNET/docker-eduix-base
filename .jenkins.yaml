@@ -1,26 +1,31 @@
-docker_name: eduix/eduix-base
+docker_name: eduix/eduid-base
 docker_tags:
     - "${GIT_LOCAL_BRANCH}"
-docker_skip_tag_as_latest: true
+builders:
+  - docker
 git:
-    branches:
-        - master
-        - stable
-        - staging
-    extensions:
-        checkout_local_branch: true
+  branch: master
+  extensions:
+    checkout_local_branch: true
+triggers:
+  cron: "@daily"
 clean_workspace: true
+downstream:
+  - docker-eduid-base-staging
+  - docker-eduid-base-stable
 
 extra_jobs:
-    - name: docker-eduix-base-daily
+    - name: docker-eduid-base-staging
       builders:
         - docker
-      docker_name: eduix/eduix-base
-      docker_skip_tag_as_latest: false
+      docker_skip_tag_as_latest: true
       git:
-        branch: master
-        extensions:
-            checkout_local_branch: true
-      triggers:
-        github_push: false
-        cron: "@daily"
+        branch: staging
+      downstream: []
+    - name: docker-eduid-base-stable
+      builders:
+        - docker
+      docker_skip_tag_as_latest: true
+      git:
+        branch: stable
+      downstream: []
