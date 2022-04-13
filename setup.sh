@@ -25,6 +25,11 @@ apt-get update && \
     && apt-get -y autoremove \
     && apt-get autoclean
 
+# Exit the build if e.g. Jenkins has run out of space
+if [[ "${?}" != "0" ]]; then
+    exit 1
+fi
+
 # Do some more cleanup to save space
 rm -rf /var/lib/apt/lists/*
 
