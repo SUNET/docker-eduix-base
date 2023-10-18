@@ -6,7 +6,7 @@ set -x
 export DEBIAN_FRONTEND noninteractive
 
 # Use the mirror hosted within SUNET in Sweden
-/bin/sed -i s/deb.debian.org/ftp.se.debian.org/g /etc/apt/sources.list
+#/bin/sed -i s/deb.debian.org/ftp.se.debian.org/g /etc/apt/sources.list.d/debian.sources
 
 # Update the image and install common tools for debugging
 apt-get update && \
@@ -21,7 +21,7 @@ apt-get update && \
       xmlstarlet \
       less \
       unzip \
-      openjdk-11-jdk \
+      openjdk-17-jdk \
     && apt-get -y autoremove \
     && apt-get autoclean
 
