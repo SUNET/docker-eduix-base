@@ -21,7 +21,7 @@ apt-get update && \
       xmlstarlet \
       less \
       unzip \
-      openjdk-17-jdk \
+      openjdk-11-jdk \
     && apt-get -y autoremove \
     && apt-get autoclean
 
